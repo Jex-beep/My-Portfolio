@@ -1,0 +1,322 @@
+<app-navigation></app-navigation>
+
+<div class="viewport-wrapper">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="animated-grid"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
+
+<section class="hero-section">
+  <div class="hero-wrapper">
+    <div class="hero-grid">
+      
+      <div class="hero-content">
+        <header class="hero-header-meta">
+          <div class="availability-tag">
+            <span class="pulse-dot"></span>
+            Available for Projects
+          </div>
+          <span class="hero-label">Portfolio 2026</span>
+        </header>
+        
+        <h1 class="hero-title">
+          Featured <br>
+          <span class="text-shine">Projects</span>
+        </h1>
+        
+        <p class="hero-description">
+          Full-Stack Developer focused on building high-performance web applications. 
+          Specializing in Angular ecosystems and scalable backend architectures with a 
+          refined eye for minimalist design.
+        </p>
+
+        <div class="hero-stats-group">
+          <div class="stat-box">
+            <span class="stat-num">{{ projects.length }}</span>
+            <div class="stat-info">
+              <span class="stat-label">Production</span>
+              <span class="stat-sub">Deployments</span>
+            </div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <span class="stat-num">3+</span>
+            <div class="stat-info">
+              <span class="stat-label">Years of</span>
+              <span class="stat-sub">Execution</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPOTLIGHT CAROUSEL -->
+      <div class="hero-spotlight">
+        <div class="spotlight-container">
+          <!-- Carousel Cards -->
+          <div class="spotlight-card" 
+               *ngFor="let project of spotlightProjects; let i = index"
+               [class.active]="i === currentSpotlightIndex">
+            
+            <div class="card-glass-blur"></div>
+            
+            <div class="card-content">
+              <div class="card-tag">
+                {{ project.status === 'In Development' ? 'Upcoming' : 'Featured' }}
+              </div>
+              
+              <h3 class="card-project-name">{{ project.title }}</h3>
+              <p class="card-project-type">{{ project.type }}</p>
+              
+              <div class="card-tech-row">
+                <span class="mini-tech" *ngFor="let tech of project.technologies | slice:0:3">
+                  {{ tech }}
+                </span>
+              </div>
+              
+              <div class="card-progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill" [style.width]="project.status === 'Completed' ? '100%' : '65%'"></div>
+                </div>
+                <span class="progress-text">{{ project.status }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="spotlight-controls">
+          <button class="control-btn" (click)="prevSpotlight()" aria-label="Previous Project" title="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          
+          <div class="control-indicators">
+            <span *ngFor="let p of spotlightProjects; let i = index" 
+                  [class.dot-active]="i === currentSpotlightIndex"
+                  (click)="goToSpotlight(i)"
+                  [title]="p.title"></span>
+          </div>
+
+          <button class="control-btn" (click)="nextSpotlight()" aria-label="Next Project" title="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="ambient-glow"></div>
+      </div>
+
+    </div>
+    <div class="hero-divider"></div>
+    
+  </div>
+  <div class="scroll-indicator" style="animation-delay: 1.2s">
+        <span class="scroll-label">Scroll to Explore</span>
+        <div class="scroll-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+</section>
+
+  <!-- PROJECTS SHOWCASE -->
+  <section class="projects-showcase">
+    <div class="showcase-wrapper">
+      <!-- Project Items -->
+      <article class="project-item" 
+                *ngFor="let project of projects; let i = index"
+                [class.layout-right]="project.layout === 'right'">
+        
+        <!-- Project Content -->
+        <div class="project-content">
+          <div class="content-header">
+            <div class="project-meta">
+              <span class="project-type">{{ project.type }}</span>
+              <span class="project-status" [class.completed]="project.status === 'Completed'"
+                    [class.prototype]="project.status === 'Prototype'">
+                {{ project.status }}
+              </span>
+            </div>
+            <h2 class="project-title">{{ project.title }}</h2>
+          </div>
+
+          <div class="content-body">
+            <div class="goal-section">
+              <h3 class="section-label">Project Goal</h3>
+              <p class="goal-text">{{ project.goal }}</p>
+            </div>
+
+            <div class="role-section">
+              <h3 class="section-label">My Role</h3>
+              <p class="role-text">{{ project.role }}</p>
+            </div>
+
+            <div class="features-section">
+              <h3 class="section-label">Key Features</h3>
+              <ul class="features-list">
+                <li *ngFor="let feature of project.features" class="feature-item">
+                  <span class="feature-bullet"></span>
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="tech-section">
+              <h3 class="section-label">Technologies</h3>
+              <div class="tech-list">
+                <span class="tech-item" *ngFor="let tech of project.technologies">{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-footer">
+            <div class="cta-group">
+              <a [href]="project.liveUrl" class="cta-button primary">
+                <span>View Live</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+              <a [href]="project.githubUrl" class="cta-button secondary">
+                <span>GitHub</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Images Carousel -->
+        <div class="project-images">
+          <div class="carousel-container">
+            <!-- Images Slider -->
+            <div class="carousel-slider" 
+                 [style.transform]="'translateX(-' + (currentImageIndex[project.id] * 100) + '%)'">
+              <div class="carousel-item" *ngFor="let image of project.images">
+                <div class="image-wrapper">
+                  <img [src]="image" [alt]="project.title" class="showcase-image">
+                  <div class="image-overlay"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="carousel-controls">
+              <button class="carousel-btn prev" 
+                      (click)="previousImage(project.id, project.images.length)"
+                      [disabled]="project.images.length <= 1"
+                      aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+
+              <button class="carousel-btn next" 
+                      (click)="nextImage(project.id, project.images.length)"
+                      [disabled]="project.images.length <= 1"
+                      aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Image Indicators -->
+            <div class="carousel-indicators" *ngIf="project.images.length > 1">
+              <button class="indicator-dot" 
+                      *ngFor="let image of project.images; let i = index"
+                      [class.active]="currentImageIndex[project.id] === i"
+                      (click)="goToImage(project.id, i)"
+                      [attr.aria-label]="'Go to image ' + (i + 1)">
+              </button>
+            </div>
+
+            <!-- Image Counter -->
+            <div class="image-counter">
+              <span>{{ currentImageIndex[project.id] + 1 }}</span>
+              <span>/</span>
+              <span>{{ project.images.length }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Divider -->
+        <div class="project-divider"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- UPCOMING SECTION -->
+  <section class="upcoming-section">
+    <div class="upcoming-wrapper">
+      <div class="section-header scroll-reveal">
+        <span class="section-label-accent">Coming Soon</span>
+        <h2 class="section-title">Upcoming Project</h2>
+        <div class="section-underline"></div>
+      </div>
+
+      <article class="upcoming-item scroll-reveal">
+        <!-- Upcoming Content -->
+        <div class="upcoming-content">
+          <div class="content-header">
+            <div class="project-meta">
+              <span class="project-type">{{ upcomingProject.type }}</span>
+              <span class="project-status in-development">{{ upcomingProject.status }}</span>
+            </div>
+            <h3 class="project-title">{{ upcomingProject.title }}</h3>
+          </div>
+
+          <div class="content-body">
+            <p class="goal-text">{{ upcomingProject.goal }}</p>
+
+            <div class="features-section">
+              <h4 class="section-label">Planned Features</h4>
+              <ul class="features-list">
+                <li *ngFor="let feature of upcomingProject.features" class="feature-item">
+                  <span class="feature-bullet"></span>
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="tech-section">
+              <h4 class="section-label">Tech Stack</h4>
+              <div class="tech-list">
+                <span class="tech-item" *ngFor="let tech of upcomingProject.technologies">{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="coming-soon-note">
+            <span>Status: Development in Progress</span>
+          </div>
+        </div>
+
+        <!-- Upcoming Image -->
+        <div class="upcoming-image-container">
+          <img [src]="upcomingProject.images[0]" alt="CAMPASS Preview" class="showcase-image upcoming">
+          <div class="coming-soon-overlay">
+            <span class="overlay-text">Coming Soon</span>
+          </div>
+          <div class="image-counter">
+            <span>1</span>
+            <span>/</span>
+            <span>1</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

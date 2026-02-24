@@ -1,0 +1,254 @@
+<div class="viewport-wrapper">
+  <app-navigation></app-navigation>
+  
+  <div class="animated-bg">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="animated-grid"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="status-badge" style="animation-delay: 0.1s">
+          <span class="pulse-dot"></span>
+          <span class="badge-text">Available for Opportunities</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="title-line">
+            <span class="char" *ngFor="let char of titleChars1; let i = index" 
+                  [style.animation-delay]="(0.2 + i * 0.03) + 's'">{{ char }}</span>
+          </span>
+          <span class="title-line">
+            <span class="char" *ngFor="let char of titleChars2; let i = index" 
+                  [style.animation-delay]="(0.2 + (titleChars1.length + i) * 0.03) + 's'">{{ char }}</span>
+          </span>
+        </h1>
+
+        <div class="role-section" style="animation-delay: 0.5s">
+          <div class="role-label">I'm a</div>
+          <div class="role-display">
+            <div class="role-bg"></div>
+            <span class="role-text" 
+                  *ngFor="let role of roles; let i = index" 
+                  [style.animation-delay]="(0.8 + i * 3) + 's'">
+              {{ role }}
+            </span>
+          </div>
+        </div>
+
+        <p class="hero-description animate-slide-up" style="animation-delay: 0.6s">
+          Crafting beautiful, performant web experiences with Angular, TypeScript, and modern design principles.
+          Turning complex problems into elegant, scalable solutions.
+        </p>
+
+        <div class="cta-buttons animate-slide-up" style="animation-delay: 0.7s">
+          <a href="#projects" class="btn btn-primary">
+            <span class="btn-text">View My Work</span>
+            <span class="btn-icon">→</span>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Let's Talk</span>
+          </a>
+        </div>
+
+        <div class="social-links animate-slide-up" style="animation-delay: 0.8s">
+          <a href="#" class="social-link">
+            <span class="social-icon">GitHub</span>
+            <span class="link-underline"></span>
+          </a>
+          <a href="#" class="social-link">
+            <span class="social-icon">LinkedIn</span>
+            <span class="link-underline"></span>
+          </a>
+          <a href="#" class="social-link">
+            <span class="social-icon">Email</span>
+            <span class="link-underline"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right animate-fade-in-scale" style="animation-delay: 0.3s">
+        <div class="hero-visual-container">
+          <div class="glow-circle glow-1"></div>
+          <div class="glow-circle glow-2"></div>
+          <div class="glow-circle glow-3"></div>
+
+          <div style="position: relative; display: flex; align-items: center; justify-content: center; z-index: 3;">
+            <div class="profile-pattern"></div>
+            
+            <div class="profile-container">
+              <div class="profile-pattern"></div>
+              <img src="formaljm.png" alt="JM" class="profile-image">
+            </div>
+            
+            <div class="accent-dot dot-1"></div>
+            <div class="accent-dot dot-2"></div>
+            <div class="accent-dot dot-3"></div>
+            
+            <div class="profile-lines">
+              <div class="line line-1"></div>
+              <div class="line line-2"></div>
+              <div class="line line-3"></div>
+            </div>
+          </div>
+
+          <div class="stats-cards">
+            <div class="stat-card" *ngFor="let stat of stats">
+              <div class="stat-number">{{ stat.number }}</div>
+              <div class="stat-label">{{ stat.label }}</div>
+              <div class="stat-line"></div>
+            </div>
+          </div>
+
+          <div class="code-window" style="animation-delay: 0.8s">
+            <div class="window-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="code-content">
+              <div class="code-line"><span class="keyword">const</span> <span class="variable">developer</span> = <span class="bracket">{{ '{' }}</span></div>
+              <div class="code-line"><span class="property">  name:</span> <span class="string">"Julien"</span>,</div>
+              <div class="code-line"><span class="property">  skills:</span> [<span class="string">"Angular"</span>, <span class="string">"Design"</span>],</div>
+              <div class="code-line"><span class="property">  status:</span> <span class="string">"Creating"</span></div>
+              <div class="code-line"><span class="bracket">{{ '}' }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" style="animation-delay: 1.2s">
+      <span class="scroll-label">Scroll to Explore</span>
+      <div class="scroll-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section section-spacing" id="projects">
+    <div class="section-inner">
+      <div class="section-header scroll-fade-in">
+        <span class="header-label">Featured Projects</span>
+        <h2 class="section-title">My Latest Work</h2>
+        <div class="header-underline"></div>
+      </div>
+
+      <div class="projects-container">
+        <div class="project-card scroll-fade-in-stagger" *ngFor="let project of featuredProjects; let i = index" [style.transition-delay]="(i * 0.1) + 's'">
+          
+          <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="project-image-wrapper">
+            <img [src]="project.image" [alt]="project.name" class="project-image">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <span class="project-badge">{{ project.category }}</span>
+                <p class="overlay-text">Click to explore</p>
+              </div>
+            </div>
+            <div class="image-border"></div>
+          </a>
+
+          <div class="project-info">
+            <h3 class="project-title">{{ project.name }}</h3>
+            <p class="project-desc">{{ project.tech }}</p>
+            
+            <a [href]="project.url" target="_blank" rel="noopener noreferrer" class="project-link">
+              <span>View Project</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-all-cta scroll-fade-in">
+        <a href="/projects" class="cta-link">
+          <span>Explore All Projects</span>
+          <svg class="cta-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h12M14 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise-section section-spacing">
+    <div class="section-inner">
+      <div class="section-header scroll-fade-in">
+        <span class="header-label">What I Offer</span>
+        <h2 class="section-title">Core Expertise</h2>
+        <div class="header-underline"></div>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card scroll-fade-in-stagger" 
+             *ngFor="let exp of expertise; let i = index" 
+             [style.transition-delay]="(i * 0.1) + 's'"
+             (mouseenter)="onExpertiseHover(i)"
+             (mouseleave)="onExpertiseLeave()"
+             (mousemove)="onExpertiseMouseMove($event, i)">
+          <div class="expertise-header-section">
+            <div class="expertise-icon">{{ String.fromCharCode(65 + i) }}</div>
+            <h3 class="expertise-title">{{ exp.title }}</h3>
+          </div>
+          <p class="expertise-desc">{{ exp.description }}</p>
+          <div class="expertise-skills">
+            <span class="skill-tag" *ngFor="let skill of exp.items">{{ skill }}</span>
+          </div>
+          <div class="expertise-gradient"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section section-spacing">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-box scroll-fade-in-stagger" 
+             *ngFor="let s of statsData; let i = index" 
+             [style.transition-delay]="(i * 0.1) + 's'"
+             [attr.data-target]="s.number">
+          <div class="stat-number-display">
+            <span class="count-value">0</span><span class="stat-suffix">{{ s.suffix }}</span>
+          </div>
+          <p class="stat-title">{{ s.title }}</p>
+          <div class="stat-progress">
+            <div class="progress-bar" [style.--progress]="s.progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section section-spacing" id="contact">
+    <div class="section-inner">
+      <div class="cta-box scroll-fade-in">
+        <h2 class="cta-title">Ready to Start Something?</h2>
+        <p class="cta-text">Let's collaborate on your next amazing project. I'm always open to new opportunities.</p>
+        
+        <div class="cta-button-group">
+          <a routerLink="/contact" class="btn btn-primary btn-large">
+            <span>Get In Touch</span>
+            <span class="btn-icon" style="margin-left: 10px; display: inline-block;">→</span>
+          </a>
+          <a routerLink="/resume" class="btn btn-secondary btn-large">
+            <span>View Resume</span>
+          </a>
+        </div>
+
+        <div class="cta-links">
+          <a href="#" class="contact-link">GitHub</a>
+          <a href="#" class="contact-link">LinkedIn</a>
+          <a href="#" class="contact-link">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

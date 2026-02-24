@@ -1,0 +1,56 @@
+<nav class="glass-nav" [class.menu-open]="isMenuOpen">
+  <div class="nav-items-wrapper desktop-nav">
+    <div class="nav-item-container">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    </div>
+    <div class="nav-item-container">
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </div>
+    <div class="nav-item-container">
+      <a routerLink="/projects" routerLinkActive="active">Projects</a>
+    </div>
+    <div class="nav-item-container">
+      <a routerLink="/resume" routerLinkActive="active">Resume</a>
+    </div>
+    <div class="nav-item-container">
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </div>
+  </div>
+
+  <!-- Mobile Hamburger Button -->
+  <button class="hamburger" [class.is-open]="isMenuOpen" (click)="toggleMenu()" aria-label="Toggle menu">
+    <span class="bar bar-1"></span>
+    <span class="bar bar-2"></span>
+    <span class="bar bar-3"></span>
+  </button>
+</nav>
+
+<!-- Mobile Fullscreen Overlay -->
+<div class="mobile-overlay" [class.is-open]="isMenuOpen">
+  <div class="overlay-bg"></div>
+  <nav class="mobile-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+       (click)="closeMenu()" class="mobile-link">
+      <span class="link-index">01</span>Home
+    </a>
+    <a routerLink="/about" routerLinkActive="active"
+       (click)="closeMenu()" class="mobile-link">
+      <span class="link-index">02</span>About
+    </a>
+    <a routerLink="/projects" routerLinkActive="active"
+       (click)="closeMenu()" class="mobile-link">
+      <span class="link-index">03</span>Projects
+    </a>
+    <a routerLink="/resume" routerLinkActive="active"
+       (click)="closeMenu()" class="mobile-link">
+      <span class="link-index">04</span>Resume
+    </a>
+    <a routerLink="/contact" routerLinkActive="active"
+       (click)="closeMenu()" class="mobile-link">
+      <span class="link-index">05</span>Contact
+    </a>
+  </nav>
+  <div class="overlay-footer">
+    <p>© 2025 — Portfolio</p>
+  </div>
+</div>

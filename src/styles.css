@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+/* This targets the very top level of the browser */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #0a0514; /* Match your deep purple */
+  overflow-y: auto; /* CHANGED: Allow vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scroll */
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,238 @@
+<app-navigation></app-navigation>
+
+<div class="viewport-wrapper">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="animated-grid"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+  </div>
+
+<section class="about-hero">
+  <div class="hero-content-about">
+    
+    <div class="hero-visual-about scroll-fade-in">
+      <div class="profile-container-wrapper">
+        
+        <div class="data-chip chip-top">
+          <span>Based in PH</span>
+        </div>
+        <div class="data-chip chip-bottom">
+          <span>UI/UX Focused</span>
+        </div>
+        
+        <div class="profile-large" (click)="handleGalleryClick()" title="Click to view next">
+          <div class="image-stack">
+            <img *ngFor="let img of galleryImages; let i = index" 
+                 [src]="img.src" 
+                 [alt]="img.alt" 
+                 class="profile-img-large"
+                 [class.active]="i === currentPhotoIndex">
+          </div>
+          
+          <div class="profile-glow"></div>
+          <div class="profile-border-animate"></div>
+          <div class="profile-glass-shine"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-text-about scroll-fade-in">
+      <span class="header-label">About Me</span>
+      
+      <h1 class="about-title">
+        <span class="title-gradient">Creative Developer</span>
+        <br>
+        <span class="title-gradient">Building Tomorrow</span>
+      </h1>
+      
+      <p class="about-subtitle">
+        I'm a 3rd-year Web Developer student passionate about crafting beautiful, high-performance web applications. 
+        With a blend of technical expertise and design thinking, I turn complex problems into elegant solutions.
+      </p>
+      
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Projects Built</span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Commitment</span>
+        </div>
+      </div>
+    </div>
+      <div class="scroll-indicator" style="animation-delay: 1.2s">
+        <span class="scroll-label">Scroll to Explore</span>
+        <div class="scroll-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+  </div>
+</section>
+  <!-- JOURNEY SECTION -->
+  <section class="journey-section section-spacing">
+    <div class="section-inner">
+      <div class="section-header scroll-fade-in">
+        <span class="header-label">My Journey</span>
+        <h2 class="section-title">From Curious Coder to Full-Stack Developer</h2>
+        <div class="header-underline"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item scroll-fade-in-stagger" *ngFor="let event of timeline; let i = index" [style.animation-delay]="(i * 0.15) + 's'">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">{{ event.year }}</div>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">{{ event.title }}</h3>
+            <p class="timeline-desc">{{ event.description }}</p>
+            <div class="timeline-tags" *ngIf="event.tags">
+              <span class="tag" *ngFor="let tag of event.tags">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE GRID SECTION -->
+  <section class="expertise-grid-section section-spacing">
+    <div class="section-inner">
+      <div class="section-header scroll-fade-in">
+        <span class="header-label">Core Competencies</span>
+        <h2 class="section-title">What I Master</h2>
+        <div class="header-underline"></div>
+      </div>
+
+      <div class="expertise-cards-grid">
+        <div class="expertise-card-item scroll-fade-in-stagger" *ngFor="let exp of expertise; let i = index" [style.animation-delay]="(i * 0.12) + 's'">
+          <div class="expertise-card-header">
+            <div class="expertise-icon-circle" [attr.data-type]="exp.type">
+              <svg class="expertise-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path *ngIf="exp.type === 'frontend'" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline *ngIf="exp.type === 'frontend'" points="9 22 9 12 15 12 15 22"></polyline>
+                <circle *ngIf="exp.type === 'backend'" cx="12" cy="12" r="10"></circle>
+                <path *ngIf="exp.type === 'backend'" d="M12 6v12M6 12h12"></path>
+                <path *ngIf="exp.type === 'design'" d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 19.8-4.3M22 12.5a10 10 0 0 1-19.8 4.2"></path>
+                <path *ngIf="exp.type === 'tools'" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+              </svg>
+            </div>
+            <h3 class="expertise-title">{{ exp.title }}</h3>
+          </div>
+          <p class="expertise-description">{{ exp.description }}</p>
+          <div class="expertise-skills">
+            <span class="expertise-skill" *ngFor="let skill of exp.skills">{{ skill }}</span>
+          </div>
+          <div class="expertise-card-shine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section section-spacing">
+  <div class="section-inner">
+    <div class="section-header scroll-fade-in">
+      <span class="header-label">What Others Say</span>
+      <h2 class="section-title">Testimonials</h2>
+      <div class="header-underline"></div>
+    </div>
+
+    <div class="testimonials-carousel">
+      <div class="testimonials-track" [style.transform]="'translateX(-' + (currentTestimonialIndex * 100) + '%)'">
+        <div class="testimonial-slide" *ngFor="let testimonial of testimonials; let i = index">
+          <div class="testimonial-card" [class.entering-right]="slideDirection === 'right' && i === currentTestimonialIndex"
+               [class.entering-left]="slideDirection === 'left' && i === currentTestimonialIndex">
+            <div class="testimonial-content">
+              <div class="testimonial-quote-icon">"</div>
+              <p class="testimonial-text">{{ testimonial.description }}</p>
+            </div>
+            <div class="testimonial-footer">
+              <div class="testimonial-photo-wrapper">
+                <img [src]="testimonial.photo" [alt]="testimonial.name" class="testimonial-photo">
+              </div>
+              <div class="testimonial-info">
+                <h4 class="testimonial-name">{{ testimonial.name }}</h4>
+                <p class="testimonial-relation">{{ testimonial.relation }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-nav">
+        <button class="testimonial-arrow prev" (click)="prevTestimonial()" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="testimonials-dots">
+          <button
+            class="testimonial-dot"
+            *ngFor="let testimonial of testimonials; let i = index"
+            [class.active]="i === currentTestimonialIndex"
+            (click)="goToTestimonial(i)"
+            [attr.aria-label]="'Go to testimonial ' + (i + 1)">
+          </button>
+        </div>
+
+        <button class="testimonial-arrow next" (click)="nextTestimonial()" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CERTIFICATES SECTION -->
+  <section class="certificates-section section-spacing">
+    <div class="section-inner">
+      <div class="section-header scroll-fade-in">
+        <span class="header-label">Credentials</span>
+        <h2 class="section-title">Certificates & Recognition</h2>
+        <div class="header-underline"></div>
+      </div>
+
+      <div class="certificates-grid">
+      <div class="certificate-card scroll-fade-in-stagger" 
+          *ngFor="let cert of certificates; let i = index" 
+          [style.animation-delay]="(i * 0.12) + 's'">
+        
+        <div class="certificate-image-wrapper">
+          <img [src]="cert.image" [alt]="cert.name" class="certificate-image">
+          
+          <a [href]="cert.link" target="_blank" class="certificate-overlay">
+            <span class="certificate-view">View Certificate</span>
+          </a>
+          
+        </div>
+
+        <div class="certificate-info">
+          <h3 class="certificate-name">{{ cert.name }}</h3>
+          <p class="certificate-issuer">{{ cert.issuer }}</p>
+          <p class="certificate-date">{{ cert.date }}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>
