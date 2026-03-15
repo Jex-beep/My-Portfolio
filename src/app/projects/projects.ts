@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Navigation } from '../navigation/navigation';
-import { Footer } from '../footer/footer';
+import { FooterComponent } from '../footer/footer';
 import { RouterLink } from '@angular/router';
 
 interface ProjectShowcase {
@@ -22,7 +22,7 @@ interface ProjectShowcase {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, Navigation, Footer, RouterLink],
+  imports: [CommonModule, Navigation, FooterComponent, RouterLink],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })

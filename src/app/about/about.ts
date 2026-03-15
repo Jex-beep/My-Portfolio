@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Navigation } from '../navigation/navigation';
-import { Footer } from '../footer/footer';
+import {  FooterComponent } from '../footer/footer';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, Navigation, Footer, RouterLink],
+  imports: [CommonModule, Navigation, FooterComponent, RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
@@ -138,6 +138,41 @@ export class About implements OnInit, OnDestroy {
       date: '2023',
       image: './certifications/comptia-itf+.png',
       link: 'https://www.credly.com/badges/e37533b6-2470-4a92-9e97-a0a17e792904/public_url'
+    },
+    {
+      name: 'Google Analytics Certification',
+      issuer: 'Google Analytics',
+      date: '2026',
+      image: './certifications/Google Analytics Certification.png',
+      link: 'https://skillshop.credential.net/c676dc94-37ae-480c-a4ab-0211f2162566#acc.3vxIeuUV'
+    },
+    {
+      name: 'Get started using Google Analytics',
+      issuer: 'Google Analytics',
+      date: '2026',
+      image: './certifications/Get started using Google Analytics.png',
+      link: 'https://skillshop.credential.net/1e35560f-d844-48c0-9a7c-fca4dabdf4d0#acc.Rk9Oia7n'
+    },
+    {
+      name: 'Dive Deeper into GA4 Data and Reports',
+      issuer: 'Google Analytics',
+      date: '2026',
+      image: './certifications/Dive-Deeper-into GA4-Data-and-Reports.png',
+      link: 'https://skillshop.credential.net/637e766e-7206-4afe-aa0f-18359e127d8d#acc.dBbq6XMY'
+    },
+    {
+      name: 'Manage GA4 Data and Learn to Read Reports',
+      issuer: 'Google Analytics',
+      date: '2026',
+      image: './certifications/Manage GA4 Data and Learn to Read Reports.png',
+      link: 'https://skillshop.credential.net/48865fc1-0e43-469b-b43b-00f7d7359888#acc.0E9hy8sx'
+    },
+    {
+      name: 'Use GA4 with other Tools and Data Sources',
+      issuer: 'Google Analytics',
+      date: '2026',
+      image: './certifications/Use GA4 with other Tools and Data Sources.png',
+      link: 'https://skillshop.credential.net/9f7a6c9f-8b24-45c7-bfd1-0c77ecdcbfff#acc.PdpFZerx'
     },
     {
       name: 'Website UI/UX Designging using ChatGPT',

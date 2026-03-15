@@ -3,20 +3,19 @@
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  min-width: 850px; 
-  padding: 18px 45px; 
+  min-width: 850px;
+  padding: 18px 45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* UPDATED: Live Purple Mesh Background */
+
   background: rgba(10, 5, 20, 0.95);
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(112, 8, 104, 0.45) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(70, 0, 150, 0.4) 0px, transparent 50%),
     radial-gradient(at 50% 0%, rgba(150, 50, 255, 0.15) 0px, transparent 50%);
   background-size: 200% 200%;
-  
+
   backdrop-filter: blur(30px) saturate(210%);
   -webkit-backdrop-filter: blur(30px) saturate(210%);
   border: 1.5px solid rgba(150, 100, 255, 0.15);
@@ -25,15 +24,14 @@
   z-index: 1000;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(130, 70, 255, 0.15);
 
-  /* UPDATED: Added liveMesh animation */
-  animation: 
+  animation:
     navReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards,
     ambientPulse 8s infinite ease-in-out 1.2s,
-    liveMesh 12s infinite alternate ease-in-out; 
-  overflow: hidden; 
+    liveMesh 12s infinite alternate ease-in-out;
+  overflow: hidden;
 }
 
-/* THE "SHINE" SWEEP */
+/* Shine sweep */
 .glass-nav::before {
   content: "";
   position: absolute;
@@ -52,7 +50,7 @@
   width: 100%;
   justify-content: center;
   position: relative;
-  z-index: 2; /* Keeps text above the live background */
+  z-index: 2;
 }
 
 .nav-item-container {
@@ -60,45 +58,62 @@
   animation: itemSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Delay Logic */
 .nav-item-container:nth-child(1) { animation-delay: 0.2s; }
 .nav-item-container:nth-child(2) { animation-delay: 0.3s; }
 .nav-item-container:nth-child(3) { animation-delay: 0.4s; }
 .nav-item-container:nth-child(4) { animation-delay: 0.5s; }
 .nav-item-container:nth-child(5) { animation-delay: 0.6s; }
 
-.nav-item-container a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 14px 32px;
+/* ── Base link — locked against page-level interference ── */
+.nav-item-container a,
+.nav-item-container a:link,
+.nav-item-container a:visited {
+  text-decoration: none !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  padding: 12px 28px;
   border-radius: 100px;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  letter-spacing: 0.1em;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   display: inline-block;
   position: relative;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  line-height: 1;
 }
 
-/* LUXURY HOVER ANIMATION */
+/* ── Hover ── */
 .nav-item-container a:hover {
-  color: #fff;
-  background: rgba(160, 100, 255, 0.2);
-  transform: translateY(-4px); 
-  letter-spacing: 0.2em; 
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: rgba(160, 100, 255, 0.2) !important;
+  border-color: transparent !important;
+  transform: translateY(-3px);
+  letter-spacing: 0.18em;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  text-decoration: none !important;
 }
 
-/* ACTIVE INDICATOR SHINE */
-.nav-item-container a.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(180, 150, 255, 0.3);
+/* ── Active (current route) ── */
+.nav-item-container a.active,
+.nav-item-container a.active:link,
+.nav-item-container a.active:visited {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(180, 150, 255, 0.3) !important;
   box-shadow: inset 0 0 20px rgba(150, 100, 255, 0.2);
+  letter-spacing: 0.12em;
+  transform: none;
+  text-decoration: none !important;
 }
 
-/* Subtle Animated Underline for Active Link */
+/* Active underline dot */
 .nav-item-container a.active::after {
   content: "";
   position: absolute;
@@ -110,50 +125,10 @@
   animation: underlineGlow 2s infinite ease-in-out;
 }
 
-/* --- KEYFRAMES --- */
 
-/* ADDED: Dynamic movement for the purple blobs */
-@keyframes liveMesh {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes navReveal {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-40px) scale(0.9);
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes itemSlideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes sweep {
-  0% { left: -150%; }
-  20%, 100% { left: 150%; }
-}
-
-@keyframes ambientPulse {
-  0%, 100% { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(130, 70, 255, 0.15); }
-  50% { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 55px rgba(130, 70, 255, 0.3); }
-}
-
-@keyframes underlineGlow {
-  0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
-  50% { opacity: 1; transform: scaleX(1.2); }
-}
-/* =====================
+/* ═══════════════════════════════════════════════════════
    HAMBURGER BUTTON
-   ===================== */
+   ═══════════════════════════════════════════════════════ */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -189,23 +164,14 @@
   transform-origin: center;
 }
 
-/* Morph into X */
-.hamburger.is-open .bar-1 {
-  transform: translateY(8px) rotate(45deg);
-  background: #fff;
-}
-.hamburger.is-open .bar-2 {
-  opacity: 0;
-  width: 0;
-}
-.hamburger.is-open .bar-3 {
-  transform: translateY(-8px) rotate(-45deg);
-  background: #fff;
-}
+.hamburger.is-open .bar-1 { transform: translateY(8px) rotate(45deg); background: #fff; }
+.hamburger.is-open .bar-2 { opacity: 0; width: 0; }
+.hamburger.is-open .bar-3 { transform: translateY(-8px) rotate(-45deg); background: #fff; }
 
-/* =====================
+
+/* ═══════════════════════════════════════════════════════
    MOBILE OVERLAY
-   ===================== */
+   ═══════════════════════════════════════════════════════ */
 .mobile-overlay {
   position: fixed;
   inset: 0;
@@ -224,7 +190,6 @@
   visibility: visible;
 }
 
-/* Animated dark glass background */
 .overlay-bg {
   position: absolute;
   inset: 0;
@@ -235,7 +200,6 @@
     radial-gradient(at 50% 50%, rgba(150, 50, 255, 0.1) 0px, transparent 60%);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-
   clip-path: circle(0% at 95% 5%);
   transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -244,9 +208,10 @@
   clip-path: circle(150% at 95% 5%);
 }
 
-/* =====================
+
+/* ═══════════════════════════════════════════════════════
    MOBILE NAV LINKS
-   ===================== */
+   ═══════════════════════════════════════════════════════ */
 .mobile-nav {
   display: flex;
   flex-direction: column;
@@ -256,14 +221,18 @@
   width: 100%;
 }
 
-.mobile-link {
+.mobile-link,
+.mobile-link:link,
+.mobile-link:visited {
   display: flex;
   align-items: center;
   gap: 20px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: clamp(2.2rem, 8vw, 3.5rem);
-  font-weight: 700;
+  text-decoration: none !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.35) !important;
+  font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   line-height: 1.1;
@@ -271,11 +240,10 @@
   border-bottom: 1px solid rgba(150, 100, 255, 0.1);
   position: relative;
   overflow: hidden;
-
-  /* Staggered slide-in */
   transform: translateX(-60px);
   opacity: 0;
   transition: color 0.4s ease, transform 0.4s ease;
+  background: transparent !important;
 }
 
 .mobile-overlay.is-open .mobile-link:nth-child(1) { animation: linkReveal 0.6s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -284,22 +252,25 @@
 .mobile-overlay.is-open .mobile-link:nth-child(4) { animation: linkReveal 0.6s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .mobile-overlay.is-open .mobile-link:nth-child(5) { animation: linkReveal 0.6s 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-/* Reset animation when closed */
 .mobile-overlay:not(.is-open) .mobile-link {
   animation: none !important;
   transform: translateX(-60px);
   opacity: 0;
 }
 
-.mobile-link:hover {
-  color: #fff;
+.mobile-link:hover,
+.mobile-link:hover:link {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
-.mobile-link.active {
-  color: #fff;
+.mobile-link.active,
+.mobile-link.active:link,
+.mobile-link.active:visited {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Hover shimmer sweep */
 .mobile-link::before {
   content: '';
   position: absolute;
@@ -308,9 +279,7 @@
   background: linear-gradient(90deg, transparent, rgba(150, 100, 255, 0.08), transparent);
   transition: left 0.5s ease;
 }
-.mobile-link:hover::before {
-  left: 100%;
-}
+.mobile-link:hover::before { left: 100%; }
 
 .link-index {
   font-size: 0.75rem;
@@ -322,9 +291,10 @@
   flex-shrink: 0;
 }
 
-/* =====================
+
+/* ═══════════════════════════════════════════════════════
    OVERLAY FOOTER
-   ===================== */
+   ═══════════════════════════════════════════════════════ */
 .overlay-footer {
   position: absolute;
   bottom: 40px;
@@ -333,7 +303,6 @@
   z-index: 2;
   border-top: 1px solid rgba(150, 100, 255, 0.15);
   padding-top: 20px;
-
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease 0.9s, transform 0.4s ease 0.9s;
@@ -352,30 +321,82 @@
   margin: 0;
 }
 
-/* =====================
-   MOBILE RESPONSIVENESS
-   ===================== */
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE  (≤ 768px)
+   ═══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+
   .glass-nav {
-    min-width: unset;
-    width: calc(100% - 40px);
     top: 20px;
-    padding: 14px 20px;
-    justify-content: flex-end;
-  }
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .hamburger {
+    left: auto;
+    right: 20px;
+    transform: none;
+    min-width: unset;
+    width: auto;
+    padding: 0;
+    background: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    overflow: visible;
+    animation: none !important;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .glass-nav::before { display: none !important; }
+  .desktop-nav { display: none; }
+  .hamburger { display: flex; }
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════ */
+@keyframes liveMesh {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes navReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40px) scale(0.9);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
-/* =====================
-   KEYFRAME
-   ===================== */
+@keyframes itemSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sweep {
+  0%       { left: -150%; }
+  20%, 100% { left: 150%; }
+}
+
+@keyframes ambientPulse {
+  0%, 100% { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 30px rgba(130,70,255,0.15); }
+  50%       { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 55px rgba(130,70,255,0.3); }
+}
+
+@keyframes underlineGlow {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+  50%       { opacity: 1;   transform: scaleX(1.2); }
+}
+
 @keyframes linkReveal {
   from { transform: translateX(-60px); opacity: 0; }
   to   { transform: translateX(0);     opacity: 1; }

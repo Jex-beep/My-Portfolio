@@ -2,18 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Navigation } from '../navigation/navigation';
-import { Footer } from '../footer/footer';
+import { FooterComponent } from '../footer/footer';
 import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, Navigation, Footer, FormsModule],
+  imports: [CommonModule, Navigation, FooterComponent, FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
 export class Contact implements OnInit, OnDestroy {
-  // Form data
   formData = {
     name: '',
     email: '',
@@ -21,7 +20,6 @@ export class Contact implements OnInit, OnDestroy {
     message: ''
   };
 
-  // Form states
   isSubmitting = false;
   showSuccess = false;
   errorMessage = '';
@@ -63,7 +61,6 @@ export class Contact implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    // Initialize EmailJS with public key
     try {
       emailjs.init({
         publicKey: 'fdKiUJiJkms7lnJ1D',
@@ -73,7 +70,6 @@ export class Contact implements OnInit, OnDestroy {
           throttle: 50,
         },
       });
-      console.log('EmailJS initialized successfully');
     } catch (error) {
       console.error('EmailJS initialization error:', error);
     }
@@ -89,13 +85,9 @@ export class Contact implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Initialize scroll-based animations
-   */
   private initScrollAnimations(): void {
     setTimeout(() => {
       const animatedElements = document.querySelectorAll('.scroll-reveal, .form-field, .contact-item');
-
       this.intersectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -103,108 +95,79 @@ export class Contact implements OnInit, OnDestroy {
           }
         });
       }, this.observerOptions);
-
       animatedElements.forEach((el) => this.intersectionObserver?.observe(el));
     }, 150);
   }
 
-  /**
-   * Validate email format
-   */
   isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  /**
-   * Handle form submission - Shows success popup immediately
-   */
   async onSubmit(): Promise<void> {
-    // Prevent multiple submissions
-    if (this.submitLock) {
-      return;
-    }
+    if (this.submitLock) return;
 
-    // Validation
     if (!this.formData.name.trim()) {
       this.errorMessage = 'Please enter your name';
       return;
     }
-
     if (!this.formData.email.trim()) {
       this.errorMessage = 'Please enter your email';
       return;
     }
-
     if (!this.isValidEmail(this.formData.email)) {
       this.errorMessage = 'Please enter a valid email address';
       return;
     }
-
     if (!this.formData.subject.trim()) {
       this.errorMessage = 'Please enter a subject';
       return;
     }
-
     if (!this.formData.message.trim()) {
       this.errorMessage = 'Please enter a message';
       return;
     }
 
-    // Clear error message and lock submission
     this.errorMessage = '';
     this.isSubmitting = true;
     this.submitLock = true;
 
-    try {
-      console.log('Sending email with data:', {
-        from_name: this.formData.name,
-        from_email: this.formData.email,
-        subject: this.formData.subject,
-        message: this.formData.message,
-      });
+    // Capture form values BEFORE resetting
+    const payload = {
+      name:    this.formData.name,
+      email:   this.formData.email,
+      title:   this.formData.subject,   // matches {{title}} in your template subject line
+      message: this.formData.message,   // matches {{message}} in your template body
+      time:    new Date().toLocaleString('en-PH', {
+                 dateStyle: 'medium',
+                 timeStyle: 'short'
+               }),
+    };
 
-      // Show success popup IMMEDIATELY when user clicks send
-      this.showSuccess = true;
-      this.resetForm();
+    // Show success and reset form immediately
+    this.showSuccess = true;
+    this.resetForm();
 
-      // Send email via EmailJS in background (non-blocking)
-      emailjs.send(
-        'service_h64pn57',
-        'template_f9pq3at',
-        {
-          from_name: this.formData.name,
-          from_email: this.formData.email,
-          subject: this.formData.subject,
-          message: this.formData.message,
-          reply_to: this.formData.email,
-          to_email: 'jmppunsalan@gmail.com'
-        },
-        'fdKiUJiJkms7lnJ1D'
-      ).then((response) => {
-        console.log('Email sent successfully:', response);
-      }).catch((error) => {
-        console.error('EmailJS Error Details:', error);
-      });
+    // Send in background
+    emailjs.send(
+      'service_h64pn57',
+      'template_f9pq3at',
+      payload,
+      'fdKiUJiJkms7lnJ1D'
+    ).then((response) => {
+      console.log('Email sent successfully:', response);
+    }).catch((error) => {
+      console.error('EmailJS send error:', error);
+    });
 
-      // Auto-dismiss popup after 4 seconds
-      this.successTimeout = setTimeout(() => {
-        this.showSuccess = false;
-        this.isSubmitting = false;
-        this.submitLock = false;
-      }, 4000);
-
-    } catch (error: any) {
-      console.error('Form Error:', error);
+    // Auto-dismiss after 4 seconds
+    this.successTimeout = setTimeout(() => {
+      this.showSuccess = false;
       this.isSubmitting = false;
       this.submitLock = false;
-      this.errorMessage = 'An error occurred. Please try again.';
-    }
+    }, 4000);
   }
 
-  /**
-   * Reset form data
-   */
   resetForm(): void {
     this.formData = {
       name: '',
@@ -214,9 +177,6 @@ export class Contact implements OnInit, OnDestroy {
     };
   }
 
-  /**
-   * Close success popup
-   */
   closeSuccess(): void {
     this.showSuccess = false;
     this.isSubmitting = false;
@@ -226,9 +186,6 @@ export class Contact implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Set focus state for input
-   */
   setFocus(field: string, state: boolean): void {
     (this.isFocused as any)[field] = state;
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Navigation } from '../navigation/navigation';
-import { Footer } from '../footer/footer';
+import { FooterComponent } from '../footer/footer';
 
 interface Skill {
   category: string;
@@ -22,7 +22,7 @@ interface Certification {
 @Component({
   selector: 'app-resume',
   standalone: true,
-  imports: [CommonModule, Navigation, Footer],
+  imports: [CommonModule, Navigation, FooterComponent],
   templateUrl: './resume.html',
   styleUrl: './resume.css',
 })

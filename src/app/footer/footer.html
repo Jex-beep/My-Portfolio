@@ -1,0 +1,87 @@
+<!-- footer.html -->
+<footer class="site-footer">
+
+  <canvas id="footer-particles" class="footer-canvas"></canvas>
+  <div class="footer-glow-line"></div>
+
+  <div class="footer-inner">
+
+    <!-- Brand / Logo -->
+    <div class="footer-brand footer-reveal">
+      <div class="logo-wrap">
+        <img src="jmlogo.png" alt="JM Logo" class="footer-logo" />
+        <div class="logo-glow"></div>
+      </div>
+      <p class="brand-tagline">
+        Crafting clean interfaces &amp;<br />
+        meaningful digital experiences.
+      </p>
+      <div class="social-row">
+        <a *ngFor="let s of socialLinks"
+           [href]="s.href"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-btn"
+           [attr.aria-label]="s.label"
+           [innerHTML]="s.icon">
+        </a>
+      </div>
+    </div>
+
+    <!-- Vertical divider -->
+    <div class="footer-divider footer-reveal"></div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav footer-reveal">
+      <p class="footer-col-title">Navigation</p>
+      <ul>
+        <li *ngFor="let link of navLinks; let i = index"
+            [style.animation-delay]="(i * 0.07) + 's'">
+          <a [href]="link.href" class="footer-link">
+            <span class="link-arrow">→</span>
+            {{ link.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Contact -->
+    <div class="footer-contact footer-reveal">
+      <p class="footer-col-title">Get in Touch</p>
+      <div class="contact-lines">
+        <a href="mailto:jmppunsalan@gmail.com" class="footer-contact-item">
+          <span class="contact-dot"></span>
+          <span>jmppunsalan&#64;gmail.com</span>
+        </a>
+        <a href="tel:+639216030791" class="footer-contact-item">
+          <span class="contact-dot"></span>
+          <span>+63 921 603 0791</span>
+        </a>
+        <div class="footer-contact-item no-link">
+          <span class="contact-dot"></span>
+          <span>San Francisco, Mabalacat,<br/>Pampanga, Philippines</span>
+        </div>
+      </div>
+      <div class="availability-badge">
+        <span class="badge-pulse"></span>
+        <span>Available for Internships &amp; Freelance</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p class="copy-text">
+        &copy; {{ currentYear }} <strong>Julien Michael Punsalan</strong>. All rights reserved.
+      </p>
+      <p class="made-with">
+        Designed &amp; Built with
+        <span class="heart"></span>
+        using Angular
+      </p>
+    </div>
+  </div>
+
+</footer>
