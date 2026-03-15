@@ -106,6 +106,31 @@ export class Resume implements OnInit, OnDestroy {
       year: '2023'
     },
     {
+      title: 'Google Analytics Certification',
+      issuer: 'Google Analytics',
+      year: '2026'
+    },
+        {
+      title: 'Get started using Google Analytics',
+      issuer: 'Google Analytics',
+      year: '2026'
+    },
+        {
+      title: 'Dive Deeper into GA4 Data and Reports',
+      issuer: 'Google Analytics',
+      year: '2026'
+    },
+        {
+      title: 'Manage GA4 Data and Learn to Read Reports',
+      issuer: 'Google Analytics',
+      year: '2026'
+    },
+        {
+      title: 'Use GA4 with other Tools and Data Sources',
+      issuer: 'Google Analytics',
+      year: '2026'
+    },
+    {
       title: 'Website UI/UX Designging using ChatGPT',
       issuer: 'Simplilearn|SkillUP',
       year: '2025'
